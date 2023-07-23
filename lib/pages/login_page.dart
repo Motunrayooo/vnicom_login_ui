@@ -20,6 +20,26 @@ class _LoginPageState extends State<LoginPage> {
   final _validation = GlobalKey<FormState>();
   bool visibility = true;
 
+  String _validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return "please enter a password";
+    } else if (value.length < 8) {
+      return "password must be 8 character long";
+    } else if (!_containLettersAndNumbers(value)) {
+      return "password must contain both letters and numbers";
+    } else {
+      return "password accepted";
+    }
+  }
+
+  bool _containLettersAndNumbers(String value) {
+    final letters = RegExp(r'[a-zA-Z]');
+    final numbers = RegExp(r'[0-9]');
+    return letters.hasMatch(value) &&
+        numbers.hasMatch(value) &&
+        value.length >= 8;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,11 +99,10 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _passwordController,
                       validator: (password) {
                         if (password!.isEmpty ||
-                            RegExp(r'^(?=.?[A-Z])(?=.?[a-z])(?=.?[0-9])(?=.?[!@#\$&*~]).{8}$')
-                                .hasMatch(password)) {
-                          return "password must contain atleast 8 characters,\ncombination of letters and numbers";
+                            !_containLettersAndNumbers(password)) {
+                          return _validatePassword(password);
                         } else {
-                          return null;
+                          null;
                         }
                       },
                       hintText: "Password",
@@ -103,14 +122,11 @@ class _LoginPageState extends State<LoginPage> {
                     ReUseAbleButton(
                         label: "Continue",
                         onPress: () {
-                          _validation.currentState!.validate();
-                          if (_emailController.text.isNotEmpty &&
-                              _passwordController.text.isNotEmpty &&
-                              _passwordController.text.length >= 8) {
+                          if (_validation.currentState!.validate()) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => PaymentPage(),
+                                builder: (context) => const PaymentPage(),
                               ),
                             );
                           } else {
