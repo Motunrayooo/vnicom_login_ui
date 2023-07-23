@@ -148,8 +148,10 @@ class _LoginPageState extends State<LoginPage> {
                           UiHelper.horizontalSpaceSmall,
                           Text(
                             "Login with Google",
-                            style: AppTextStyle.bodyMedium()
-                                .copyWith(color: AppColors.darkSerpent,fontSize: 15.0,),
+                            style: AppTextStyle.bodyMedium().copyWith(
+                              color: AppColors.darkSerpent,
+                              fontSize: 15.0,
+                            ),
                           ),
                         ],
                       ),

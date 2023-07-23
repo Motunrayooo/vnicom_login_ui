@@ -66,14 +66,14 @@ flutter:
     - assets/images/
 
 
-  fonts:
-    - family: Nunito
-      fonts:
-        - asset: assets/fonts/Nunito-VariableFont_wght.ttf
-
-    - family: NunitoSans
-      fonts:
-        - asset: assets/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf
+#  fonts:
+#    - family: Nunito
+#      fonts:
+#        - asset: assets/fonts/Nunito-VariableFont_wght.ttf
+#
+#    - family: NunitoSans
+#      fonts:
+#        - asset: assets/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf
 
   #
   # For details regarding fonts from package dependencies,
